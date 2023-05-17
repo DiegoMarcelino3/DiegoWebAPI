@@ -1,2 +1,2 @@
 # DiegoWebAPI
-API simples com o propósito de aprender mais sobre .NET Core 5
+API simples com o propósito de aprender mais sobre ASP.NET Core 5
