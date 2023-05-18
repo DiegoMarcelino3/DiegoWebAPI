@@ -1,11 +1,11 @@
-﻿using DiegoWebAPI.Entity.Models;
+﻿using DiegoWebAPI.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DiegoWebAPI
+namespace DiegoWebAPI.Infraestructure.Data.Contexts
 {
     public class MySQLContext : DbContext
     {
-        public MySQLContext(DbContextOptions<MySQLContext> options) : base(options) 
+        public MySQLContext(DbContextOptions<MySQLContext> options) : base(options)
         {
         }
 
