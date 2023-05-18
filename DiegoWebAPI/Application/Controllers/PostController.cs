@@ -7,9 +7,11 @@ using DiegoWebAPI.Infraestructure.Data.Contexts;
 using DiegoWebAPI.Domain.Models;
 using DiegoWebAPI.Infraestructure.Data.Repositories;
 using DiegoWebAPI.Domain.Servicies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DiegoWebAPI.Application.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PostController : ControllerBase
