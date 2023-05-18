@@ -1,18 +1,26 @@
 ﻿using DiegoWebAPI.Domain.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DiegoWebAPI.Infraestructure.Data.Contexts
 {
-    public class MySQLContext : DbContext
+    public class MySQLContext : IdentityDbContext<ApplicationUser>
     {
         public MySQLContext(DbContextOptions<MySQLContext> options) : base(options)
         {
         }
 
+        public DbSet<ApplicationRole> ApplicationRole { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Post> Post { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ApplicationUser>().ToTable("ApplicationUser").HasKey(t => t.Id);
+            
             modelBuilder.Entity<Post>();
         }
     }
