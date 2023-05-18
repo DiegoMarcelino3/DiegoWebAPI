@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.Common;
 
-namespace DiegoWebAPI.Entity.Models
+namespace DiegoWebAPI.Domain.Models
 {
     public class Post
     {

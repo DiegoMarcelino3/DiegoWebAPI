@@ -1,3 +1,6 @@
+using DiegoWebAPI.Domain.Servicies;
+using DiegoWebAPI.Infraestructure.Data.Contexts;
+using DiegoWebAPI.Infraestructure.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +36,10 @@ namespace DiegoWebAPI
                 options.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));
 
             services.AddControllers();
+
+            services.AddScoped<PostRepository>();
+            services.AddScoped<PostService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DiegoWebAPI", Version = "v1" });
