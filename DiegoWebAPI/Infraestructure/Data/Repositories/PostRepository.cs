@@ -1,10 +1,12 @@
 ﻿using DiegoWebAPI.Domain.Models;
+using DiegoWebAPI.Domain.Services;
 using DiegoWebAPI.Infraestructure.Data.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace DiegoWebAPI.Infraestructure.Data.Repositories
 {
@@ -19,15 +21,29 @@ namespace DiegoWebAPI.Infraestructure.Data.Repositories
 
         public async Task<List<Post>> ListPosts()
         {
-            List<Post> list = await _context.Post.ToListAsync();
+            List<Post> list = await _context.Post.OrderBy(p => p.Data).Include(p => p.ApplicationUser).ToListAsync();
 
 
             return list;
         }
 
-        public async Task<Post> GetPost(int postId)
+        public async Task<List<Post>> ListPostsByUserId(string userId)
         {
-            Post post = await _context.Post.FindAsync(postId);
+            List<Post> list = await _context.Post
+                .Where(p => p.ApplicationUserId
+                .Equals(userId))
+                .OrderBy(p => p.Data)
+                .ToListAsync();
+
+
+            return list;
+        }
+
+        public async Task<Post> GetPostById(int postId)
+        {
+            Post post = await _context.Post
+                .Include(p => p.ApplicationUser)
+                .FirstOrDefaultAsync(p => p.Id == postId);
 
             return post;
         }
@@ -50,7 +66,7 @@ namespace DiegoWebAPI.Infraestructure.Data.Repositories
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> DeletePost(int postId)
+        public async Task<bool> DeletePostAsync(int postId)
         {
             var item = await _context.Post.FindAsync(postId);
             _context.Post.Remove(item);
