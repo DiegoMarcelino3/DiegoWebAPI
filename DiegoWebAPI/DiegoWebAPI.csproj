@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Infraestructure\Data\Repositories\NovaPasta\**" />
+    <Content Remove="Infraestructure\Data\Repositories\NovaPasta\**" />
+    <EmbeddedResource Remove="Infraestructure\Data\Repositories\NovaPasta\**" />
+    <None Remove="Infraestructure\Data\Repositories\NovaPasta\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.8" />

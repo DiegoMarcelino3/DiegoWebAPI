@@ -6,8 +6,8 @@ using System;
 using DiegoWebAPI.Infraestructure.Data.Contexts;
 using DiegoWebAPI.Domain.Models;
 using DiegoWebAPI.Infraestructure.Data.Repositories;
-using DiegoWebAPI.Domain.Servicies;
 using Microsoft.AspNetCore.Authorization;
+using DiegoWebAPI.Domain.Services;
 
 namespace DiegoWebAPI.Application.Controllers
 {

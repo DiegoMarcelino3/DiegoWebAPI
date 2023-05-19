@@ -1,5 +1,5 @@
 using DiegoWebAPI.Domain.Models;
-using DiegoWebAPI.Domain.Servicies;
+using DiegoWebAPI.Domain.Services;
 using DiegoWebAPI.Infraestructure.Data.Contexts;
 using DiegoWebAPI.Infraestructure.Data.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -78,6 +78,9 @@ namespace DiegoWebAPI
             services.AddScoped<PostRepository>();
             services.AddScoped<PostService>();
 
+            services.AddScoped<UserRepository>();
+            services.AddScoped<AuthService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DiegoWebAPI", Version = "v1" });
@@ -98,7 +101,7 @@ namespace DiegoWebAPI
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

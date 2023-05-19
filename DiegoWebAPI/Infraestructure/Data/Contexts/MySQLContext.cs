@@ -10,9 +10,9 @@ namespace DiegoWebAPI.Infraestructure.Data.Contexts
         {
         }
 
-        public DbSet<ApplicationRole> ApplicationRole { get; set; }
-        public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Post> Post { get; set; }
+        public DbSet<ApplicationUser> User { get; set; }
+        public DbSet<ApplicationRole> Role { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
