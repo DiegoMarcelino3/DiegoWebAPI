@@ -39,6 +39,22 @@ namespace DiegoWebAPI.Application.Controllers
             
         }
 
+        [HttpGet("list-meus-posts")]
+        public async Task<ActionResult> ListPostsMeusPosts()
+        {
+            try
+            {
+                List<Post> list = await _postService.ListMeusPosts();
+
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
         [HttpGet("get-post")]
         public async Task<ActionResult> GetPost([FromQuery] int postId)
         {
@@ -54,12 +70,12 @@ namespace DiegoWebAPI.Application.Controllers
             } 
         }
 
-        [HttpPost("create-post")]
-        public async Task<ActionResult> CreatePost([FromBody] Post post)
+        [HttpPost("novo-post")]
+        public async Task<ActionResult> NovoPost([FromBody] Post post)
         {
             try
             {
-                post = await _postService.CreatePost(post);
+                post = await _postService.NovoPost(post);
                 
                 return Ok(post);
             }
@@ -84,9 +100,17 @@ namespace DiegoWebAPI.Application.Controllers
         }
 
         [HttpPost("delete-post")]
-        public async Task<ActionResult> DeletePost([FromBody] int id)
+        public async Task<ActionResult> DeletePostAsync([FromBody] int id)
         {
-                return Ok(await _postService.DeletePost(id)); 
+            try
+            {
+                return Ok(await _postService.DeletePostAsync(id));
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
