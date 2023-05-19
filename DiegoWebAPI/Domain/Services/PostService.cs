@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 
-namespace DiegoWebAPI.Domain.Servicies
+namespace DiegoWebAPI.Domain.Services
 {
     public class PostService
     {
